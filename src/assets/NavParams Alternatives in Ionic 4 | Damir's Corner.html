@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <!-- Title here -->
+    <title>NavParams Alternatives in Ionic 4 | Damir's Corner</title>
+    <!-- Description, Keywords and Author -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@DamirArh">
+        <meta name="twitter:creator" content="@DamirArh">
+        <meta property="og:url" content="https://www.damirscorner.com/blog/posts/20190927-NavParamsAlternativesInIonic4.html">
+        <meta property="og:title" content="NavParams Alternatives in Ionic 4">
+        <meta property="og:description" content="Ionic 3 provided a unified way for passing parameters to newly opened pages - the NavParams object. In the target page constructor, it could be used to get any parameters passed to that page. Ionic 4 doesn't have a universal NavParams object anymore, therefore other approaches must be used to achieve the same.">
+        
+            <meta property="og:image" content="https://www.damirscorner.com/img/avatar.jpg">
+        
+        
+            <meta property="og:type" content="article">
+        
+    
+
+    <!-- Styles -->
+    <!-- Bootstrap CSS -->
+    <link href="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/bootstrap.css" rel="stylesheet">
+    <!-- Flex Slider CSS -->
+    <link href="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/flexslider.css" rel="stylesheet">
+    <!-- Pretty Photo -->
+    <link href="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/prettyPhoto.css" rel="stylesheet">
+    <!-- Font awesome CSS -->
+    <link href="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/font-awesome.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/style.css" rel="stylesheet">
+    <!-- Color Stylesheet - orange, blue, pink, brown, red or green-->
+    <link href="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/blue.css" rel="stylesheet">
+    <link rel="stylesheet" href="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/vs.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://www.damirscorner.com/favicon.ico">
+    <!-- RSS feed -->
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://www.damirscorner.com/blog/posts/rss.xml">
+<script async="" src="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/async-ads.js"></script><script type="text/javascript" async="" src="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/cse.js"></script><script type="text/javascript" async="" src="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/embed.js"></script><link rel="prefetch" as="style" href="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/a_data/lounge.css"><link rel="prefetch" as="script" href="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/a_data/common.js"><link rel="prefetch" as="script" href="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/a_data/lounge.js"><link rel="prefetch" as="script" href="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/a_data/config.js"><script src="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/cse_element__en.js" type="text/javascript"></script><link type="text/css" rel="stylesheet" href="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/defaulten.css"><link type="text/css" rel="stylesheet" href="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/default.css"><style type="text/css">.gsc-control-cse{font-family:arial, sans-serif}.gsc-control-cse .gsc-table-result{font-family:arial, sans-serif}.gsc-refinementsGradient{background:linear-gradient(to left,rgba(255,255,255,1),rgba(255,255,255,0))}.gsc-control-cse{border-color:#FFFFFF;background-color:#FFFFFF}input.gsc-input,.gsc-input-box,.gsc-input-box-hover,.gsc-input-box-focus{border-color:#D9D9D9}.gsc-search-button-v2,.gsc-search-button-v2:hover,.gsc-search-button-v2:focus{border-color:#666666;background-color:#CECECE;background-image:none;filter:none}.gsc-search-button-v2 svg{fill:#FFFFFF}.gsc-tabHeader.gsc-tabhActive,.gsc-refinementHeader.gsc-refinementhActive{color:#CCCCCC;border-color:#CCCCCC;background-color:#FFFFFF}.gsc-tabHeader.gsc-tabhInactive,.gsc-refinementHeader.gsc-refinementhInactive{color:#CCCCCC;border-color:#CCCCCC;background-color:#FFFFFF}.gsc-webResult.gsc-result,.gsc-results .gsc-imageResult{border-color:#FFFFFF;background-color:#FFFFFF}.gsc-webResult.gsc-result:hover{border-color:#FFFFFF;background-color:#FFFFFF}.gs-webResult.gs-result a.gs-title:link,.gs-webResult.gs-result a.gs-title:link b,.gs-imageResult a.gs-title:link,.gs-imageResult a.gs-title:link b{color:#0000CC}.gs-webResult.gs-result a.gs-title:visited,.gs-webResult.gs-result a.gs-title:visited b,.gs-imageResult a.gs-title:visited,.gs-imageResult a.gs-title:visited b{color:#0000CC}.gs-webResult.gs-result a.gs-title:hover,.gs-webResult.gs-result a.gs-title:hover b,.gs-imageResult a.gs-title:hover,.gs-imageResult a.gs-title:hover b{color:#0000CC}.gs-webResult.gs-result a.gs-title:active,.gs-webResult.gs-result a.gs-title:active b,.gs-imageResult a.gs-title:active,.gs-imageResult a.gs-title:active b{color:#0000CC}.gsc-cursor-page{color:#0000CC}a.gsc-trailing-more-results:link{color:#0000CC}.gs-webResult:not(.gs-no-results-result):not(.gs-error-result) .gs-snippet,.gs-fileFormatType{color:#000000}.gs-webResult div.gs-visibleUrl{color:#008000}.gs-webResult div.gs-visibleUrl-short{color:#008000}.gsc-cursor-box{border-color:#FFFFFF}.gsc-results .gsc-cursor-box .gsc-cursor-page{border-color:#CCCCCC;background-color:#FFFFFF;color:#CCCCCC}.gsc-results .gsc-cursor-box .gsc-cursor-current-page{border-color:#CCCCCC;background-color:#FFFFFF;color:#CCCCCC}.gsc-webResult.gsc-result.gsc-promotion{border-color:#336699;background-color:#FFFFFF}.gsc-completion-title{color:#0000CC}.gsc-completion-snippet{color:#000000}.gs-promotion a.gs-title:link,.gs-promotion a.gs-title:link *,.gs-promotion .gs-snippet a:link{color:#0000CC}.gs-promotion a.gs-title:visited,.gs-promotion a.gs-title:visited *,.gs-promotion .gs-snippet a:visited{color:#0000CC}.gs-promotion a.gs-title:hover,.gs-promotion a.gs-title:hover *,.gs-promotion .gs-snippet a:hover{color:#0000CC}.gs-promotion a.gs-title:active,.gs-promotion a.gs-title:active *,.gs-promotion .gs-snippet a:active{color:#0000CC}.gs-promotion .gs-snippet,.gs-promotion .gs-title .gs-promotion-title-right,.gs-promotion .gs-title .gs-promotion-title-right *{color:#000000}.gs-promotion .gs-visibleUrl,.gs-promotion .gs-visibleUrl-short{color:#008000}.gcsc-find-more-on-google{color:#0000CC}.gcsc-find-more-on-google-magnifier{fill:#0000CC}</style><style type="text/css">.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{display:inline-block}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;position:relative;user-select:none;-moz-user-select:none;white-space:nowrap}.gsst_e{vertical-align:middle;opacity:0.55;}.gsst_a:hover .gsst_e,.gsst_a:focus .gsst_e{opacity:0.72;}.gsst_a:active .gsst_e{opacity:1;}.gsst_f{background:white;text-align:left}.gsst_g{background-color:white;border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-moz-box-shadow:0 2px 4px rgba(0,0,0,0.2);margin:-1px -3px;padding:0 6px}.gsst_h{background-color:white;height:1px;margin-bottom:-1px;position:relative;top:-1px}.gsib_a{width:100%;padding:4px 6px 0}.gsib_a,.gsib_b{vertical-align:top}.gssb_c{border:0;position:absolute;z-index:989}.gssb_e{border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-moz-box-shadow:0 2px 4px rgba(0,0,0,0.2);cursor:default}.gssb_f{visibility:hidden;white-space:nowrap}.gssb_k{border:0;display:block;position:absolute;top:0;z-index:988}.gsdd_a{border:none!important}.gsq_a{padding:0}.gssb_a{padding:0 7px}.gssb_a,.gssb_a td{white-space:nowrap;overflow:hidden;line-height:22px}#gssb_b{font-size:11px;color:#36c;text-decoration:none}#gssb_b:hover{font-size:11px;color:#36c;text-decoration:underline}.gssb_g{text-align:center;padding:8px 0 7px;position:relative}.gssb_h{font-size:15px;height:28px;margin:0.2em}.gssb_i{background:#eee}.gss_ifl{visibility:hidden;padding-left:5px}.gssb_i .gss_ifl{visibility:visible}a.gssb_j{font-size:13px;color:#36c;text-decoration:none;line-height:100%}a.gssb_j:hover{text-decoration:underline}.gssb_l{height:1px;background-color:#e5e5e5}.gssb_m{color:#000;background:#fff}.gssb_a{padding:0 9px}.gsib_a{padding:5px 9px 4px 9px}.gscb_a{line-height:27px}.gssb_e{border:0}.gssb_l{margin:5px 0}input.gsc-input::-webkit-input-placeholder{font-size:14px}input.gsc-input:-moz-placeholder{font-size:14px}input.gsc-input::-moz-placeholder{font-size:14px}input.gsc-input:-ms-input-placeholder{font-size:14px}input.gsc-input:focus::-webkit-input-placeholder{color:transparent}input.gsc-input:focus:-moz-placeholder{color:transparent}input.gsc-input:focus::-moz-placeholder{color:transparent}input.gsc-input:focus:-ms-input-placeholder{color:transparent}.gssb_c .gsc-completion-container{position:static}.gssb_c{z-index:5000}.gsc-completion-container table{background:transparent;font-size:inherit;font-family:inherit}.gssb_c > tbody > tr,.gssb_c > tbody > tr > td,.gssb_d,.gssb_d > tbody > tr,.gssb_d > tbody > tr > td,.gssb_e,.gssb_e > tbody > tr,.gssb_e > tbody > tr > td{padding:0;margin:0;border:0}.gssb_a table,.gssb_a table tr,.gssb_a table tr td{padding:0;margin:0;border:0}</style></head>
+
+<body>
+
+<!-- Header starts -->
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Logo and site link -->
+                <div class="logo">
+                    <h1><a href="https://www.damirscorner.com/index.html">Damir's Corner<span class="color">.</span></a></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--/ Header ends -->
+
+<!-- Navigation Starts -->
+<!-- Note down the syntax before editing. It is the default twitter bootstrap navigation -->
+<div class="navbar bs-docs-nav" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <!-- Navigation links starts here -->
+            <ul class="nav navbar-nav">
+                <li><a href="https://www.damirscorner.com/index.html">Home</a></li>
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                    <!-- Submenus -->
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.damirscorner.com/blog/tags/ionic-2-3.html">By tags</a></li>
+                        <li><a href="https://www.damirscorner.com/blog/archive.html">By months</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://www.damirscorner.com/speaking.html">Speaking</a></li>
+                <li><a href="https://www.damirscorner.com/reviews.html">Reviews</a></li>
+                <li><a href="https://www.damirscorner.com/articles.html">Articles</a></li>
+                <li class="dropdown ">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Books <b class="caret"></b></a>
+                    <!-- Submenus -->
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.damirscorner.com/books/BookOnCSharpAndDotNet.html">The Absolutely Awesome Book on C# and .NET</a></li>
+                        <li><a href="https://www.damirscorner.com/books/NuGet2Essentials.html">NuGet 2 Essentials</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown ">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"></b></a>
+                    <!-- Submenus -->
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.damirscorner.com/courses/DebuggingAndUnitTestingInVisualStudio2017.html">Debugging and Unit Testing in Visual Studio 2017</a></li>
+                        <li><a href="https://www.damirscorner.com/courses/TestingForReliabilityAndPerformanceWithVisualStudio2017.html">Testing for Reliability and Performance with Visual Studio 2017</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://www.damirscorner.com/blog/posts/rss.xml">RSS</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!--/ Navigation Ends -->
+
+<!-- Content starts -->
+<div class="content">
+    <div class="container">
+        <div class="blog">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="posts">
+                
+
+
+
+
+
+
+
+<div class="entry">
+    <h2>NavParams Alternatives in Ionic 4</h2>
+    <div class="meta">
+        <i class="fa fa-calendar"></i> September 27th 2019
+        <span class="pull-right"><i class="fa fa-tag"></i> <a href="https://www.damirscorner.com/blog/tags/ionic-4-5.html">Ionic 4/5</a></span>
+    </div>
+    <p>Ionic 3 provided a unified way for passing parameters to newly opened pages - <a href="https://ionicframework.com/docs/v3/api/navigation/NavParams/">the <code>NavParams</code> object</a>. In the target page constructor, it could be used to get any parameters passed to that page:</p>
+<pre class="highlight"><code class="hljs typescript"><span class="hljs-constructor"><span class="hljs-keyword">constructor</span>(private navParams: NavParams) </span>{
+  <span class="hljs-keyword">this</span>.item = <span class="hljs-keyword">this</span>.navParams.get(<span class="hljs-string">"item"</span>);
+}
+</code></pre>
+<p>For regular pages pushed onto the navigation stack, the parameters were passed as an argument to <a href="https://ionicframework.com/docs/v3/api/navigation/NavController/">the <code>NavController::push</code> method</a>:</p>
+<pre class="highlight"><code class="hljs typescript"><span class="hljs-keyword">this</span>.navCtrl.push(<span class="hljs-string">"RegularPage"</span>, { item: <span class="hljs-keyword">this</span>.item });
+</code></pre>
+<p>For modal pages, they were a part of the options passed to <a href="https://ionicframework.com/docs/v3/api/components/modal/ModalController/">the <code>ModalController::create</code> method</a>:</p>
+<pre class="highlight"><code class="hljs typescript"><span class="hljs-keyword">this</span>.modalCtrl.create(ModalPage, { item: <span class="hljs-keyword">this</span>.item }).present();
+</code></pre>
+<p>Ionic 4 doesn't have a universal <code>NavParams</code> object anymore. Navigation is based on Angular routing. Hence the preferred way for passing parameters to a page are <a href="https://angular.io/start/routing#registering-a-route">route parameters</a>.
+ Since this makes them a part of the URL, they can't be structured 
+objects anymore. Instead only IDs should be passed around and the target
+ page should be responsible for retrieving the corresponding full 
+object.</p>
+<p>When writing a new application from scratch this isn't too much of an
+ issue. However, when upgrading an existing Ionic 3 application, it's 
+best if you can avoid such code changes. Even without them, there's 
+enough to go wrong in the process. Fortunately, Angular also supports 
+passing of <a href="https://angular.io/api/router/NavigationExtras#state">custom state</a> as part of the navigation (I'm using <a href="https://github.com/ionic-team/ionic/blob/master/angular/src/providers/nav-controller.ts">Ionic's <code>NavController</code> wrapper</a> instead of Angular router directly):</p>
+<pre class="highlight"><code class="hljs typescript"><span class="hljs-keyword">this</span>.navCtrl.navigateForward(<span class="hljs-string">"/regular"</span>, { state: { item: <span class="hljs-keyword">this</span>.item } });
+</code></pre>
+<p>This information must be retrieved in the target page constructor. It's not available anymore later in the page lifecycle:</p>
+<pre class="highlight"><code class="hljs typescript"><span class="hljs-constructor"><span class="hljs-keyword">constructor</span>(private router: Router) </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.router.getCurrentNavigation().extras.state) {
+    <span class="hljs-keyword">this</span>.item = <span class="hljs-keyword">this</span>.router.getCurrentNavigation().extras.state.item;
+  }
+}
+</code></pre>
+<p>The approach mostly worked well, but not in all cases. When I tried to pass across <a href="https://momentjs.com/">a <code>Moment</code> instance</a>, the navigation failed with a <code>DataCloneError</code>:</p>
+<pre class="highlight"><code class="hljs no-highlight">DataCloneError: Failed to execute 'pushState' on 'History': function (number) {
+    var b = number % 10,
+        output = (toInt(number % 100 / 10) === 1) ...&lt;omitted&gt;... } could not be cloned.
+</code></pre>
+<p>This worked just fine in Ionic 3. Fortunately, the target page didn't really need the full <code>Moment</code> instance. It immediately <a href="https://momentjs.com/docs/#/displaying/as-javascript-date/">converted it to a JavaScript <code>Date</code></a> anyway, so I resolved the issue by converting the value before passing it as a parameter.</p>
+<p>For modal pages, a different approach must be used. Parameters are passed as part of the options passed to <a href="https://ionicframework.com/docs/api/modal#passing-data">the <code>ModalController::create</code> method</a>, similar as Ionic 3:</p>
+<pre class="highlight"><code class="hljs typescript">(await <span class="hljs-keyword">this</span>.modalCtrl.create({
+  component: ModalPage,
+  componentProps: { item: <span class="hljs-keyword">this</span>.item }
+})).present();
+</code></pre>
+<p>These parameters are now injected into the target page as input properties:</p>
+<pre class="highlight"><code class="hljs typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ModalPage {
+  @Input()
+  item: Item;
+}
+</code></pre>
+<p>Using the above-described approaches, I could upgrade the passing of 
+navigation parameters in a rather large Ionic 3 application to Ionic 4 
+without too many related code changes.</p>
+
+</div>
+
+                <div class="well">
+                    <div>If you're looking for online one-on-one mentorship on a related topic, you can find me on <a href="https://www.codementor.io/@damirarh">Codementor</a>.</div>
+                    <div>If you need a team of experienced software engineers to help you with a project, contact us at <a href="https://www.razum.si/">Razum</a>.</div>
+                </div>
+
+                <div class="well">
+                    <div class="social pull-left">
+                        <h5>Share on Social Media</h5>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.damirscorner.com/blog/posts/20190927-NavParamsAlternativesInIonic4.html&amp;t=NavParams%20Alternatives%20in%20Ionic%204" target="_blank"><i class="fa fa-facebook facebook"></i></a>
+                        <a href="https://twitter.com/share?text=NavParams%20Alternatives%20in%20Ionic%204&amp;via=DamirArh&amp;url=https://www.damirscorner.com/blog/posts/20190927-NavParamsAlternativesInIonic4.html&amp;hashtags=Ionic4%2F5" target="_blank"><i class="fa fa-twitter twitter"></i></a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.damirscorner.com/blog/posts/20190927-NavParamsAlternativesInIonic4.html&amp;title=NavParams%20Alternatives%20in%20Ionic%204" target="_blank"><i class="fa fa-linkedin linkedin"></i></a>
+                    </div>
+                    
+                        <div class="pull-right">
+                            <h5>Copyright</h5>
+                            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/88x31.png"></a>
+                        </div>
+                    
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="comments well">
+                    <div id="disqus_thread"><iframe id="dsq-app4145" name="dsq-app4145" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus" style="width: 1px !important; min-width: 100% !important; border: medium none !important; overflow: hidden !important; height: 394px !important;" src="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/a.html" horizontalscrolling="no" verticalscrolling="no" width="100%" frameborder="0"></iframe></div>
+                    <script type="text/javascript">
+                        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                        var disqus_shortname = 'damirscorner'; // required: replace example with your forum shortname
+
+                        /* * * DON'T EDIT BELOW THIS LINE * * */
+                        (function() {
+                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="sidebar">
+                
+
+                
+                    <div class="widget">
+                        <h4>Search</h4>
+                        <script>
+                            (function() {
+                                var cx = '012431315986402388563:dvmsnduf19q';
+                                var gcse = document.createElement('script');
+                                gcse.type = 'text/javascript';
+                                gcse.async = true;
+                                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                                '//www.google.com/cse/cse.js?cx=' + cx;
+                                var s = document.getElementsByTagName('script')[0];
+                                s.parentNode.insertBefore(gcse, s);
+                            })();
+                        </script>
+                        <div id="___gcse_0"><div class="gsc-control-searchbox-only gsc-control-searchbox-only-en" dir="ltr"><form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8"><table class="gsc-search-box" cellspacing="0" cellpadding="0"><tbody><tr><td class="gsc-input"><div class="gsc-input-box" id="gsc-iw-id1"><table style="width: 100%; padding: 0px;" id="gs_id50" class="gstl_50 gsc-input" cellspacing="0" cellpadding="0"><tbody><tr><td id="gs_tti50" class="gsib_a"><input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="search" style="width: 100%; padding: 0px; border: medium none; margin: 0px; height: auto; background: rgb(255, 255, 255) url(&quot;https://www.google.com/cse/static/images/1x/en/branding.png&quot;) no-repeat scroll left center; outline: currentcolor none medium;" id="gsc-i-id1" dir="ltr" spellcheck="false"></td><td class="gsib_b"><div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a" href="javascript:void(0)" style="display: none;" title="Clear search box" role="button"><span class="gscb_a" id="gs_cb50" aria-hidden="true">×</span></a></div></td></tr></tbody></table></div></td><td class="gsc-search-button"><button class="gsc-search-button gsc-search-button-v2"><svg width="13" height="13" viewBox="0 0 13 13"><title>search</title><path d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z"></path></svg></button></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="clear results">&nbsp;</div></td></tr></tbody></table></form></div></div>
+                    </div>
+                
+
+                
+
+                
+                    <div class="widget">
+                        <h4>Related Content</h4>
+                        <ul class="list-unstyled">
+                            
+                                <li><i class="fa fa-angle-right"></i> <a href="https://www.damirscorner.com/blog/posts/20200515-ContentBasedModalTransitionsInIonic.html">Content-based Modal Transitions in Ionic</a></li>
+                            
+                                <li><i class="fa fa-angle-right"></i> <a href="https://www.damirscorner.com/blog/posts/20200508-UsingBlurHashInIonic.html">Using BlurHash in Ionic</a></li>
+                            
+                                <li><i class="fa fa-angle-right"></i> <a href="https://www.damirscorner.com/blog/posts/20200501-CustomizingPageTransitionsInIonic5.html">Customizing Page Transitions in Ionic 5</a></li>
+                            
+                                <li><i class="fa fa-angle-right"></i> <a href="https://www.damirscorner.com/blog/posts/20200410-AnOverviewOfAnimationsInIonicApps.html">An Overview of Animations in Ionic Apps</a></li>
+                            
+                                <li><i class="fa fa-angle-right"></i> <a href="https://www.damirscorner.com/blog/posts/20200320-PartiallyObscuredScrollableElementInIonic4.html">Partially Obscured Scrollable Element in Ionic 4</a></li>
+                            
+                                <li><i class="fa fa-angle-right"></i> <a href="https://www.damirscorner.com/blog/posts/20191220-PopMultiplePagesInIonic4.html">Pop Multiple Pages in Ionic 4</a></li>
+                            
+                                <li><i class="fa fa-angle-right"></i> <a href="https://www.damirscorner.com/blog/posts/20191213-FixForIonic4SideMenuFreezing.html">Fix for Ionic 4 Side Menu Freezing</a></li>
+                            
+                                <li><i class="fa fa-angle-right"></i> <a href="https://www.damirscorner.com/blog/posts/20191004-Ionic4ModalsInLazyLoadedModules.html">Ionic 4 Modals in Lazy-Loaded Modules</a></li>
+                            
+                                <li><i class="fa fa-angle-right"></i> <a href="https://www.damirscorner.com/blog/posts/20190906-MakingAMenuWorkInIonic4.html">Making a Menu Work in Ionic 4</a></li>
+                            
+                                <li><i class="fa fa-angle-right"></i> <a href="https://www.damirscorner.com/blog/posts/20190823-SwipebackGestureConfigurationInIonic4.html">Swipeback Gesture Configuration in Ionic 4</a></li>
+                            
+                                <li><i class="fa fa-angle-right"></i> <a href="https://www.damirscorner.com/blog/posts/20190809-DismissLoaderOnPageChangeInIonic4.html">Dismiss Loader on Page Change in Ionic 4</a></li>
+                            
+                        </ul>
+                    </div>
+                
+
+                
+                    <div class="widget">
+                        <h4>Latest Posts</h4>
+                        <ul class="list-unstyled">
+                            
+                            
+                                <li>
+                                    <i class="fa fa-angle-right"></i>
+                                    <a href="https://www.damirscorner.com/blog/posts/20210108-ComponentLevelServicesInAngularAndTesting.html">
+                                        Component-level services in Angular and testing
+                                    </a>
+                                </li>
+                            
+                                <li>
+                                    <i class="fa fa-angle-right"></i>
+                                    <a href="https://www.damirscorner.com/blog/posts/20210101-TestingAngularLifecycleHooks.html">
+                                        Testing Angular lifecycle hooks
+                                    </a>
+                                </li>
+                            
+                                <li>
+                                    <i class="fa fa-angle-right"></i>
+                                    <a href="https://www.damirscorner.com/blog/posts/20201225-MakeAllAzureStorageBlobsPubliclyAccessible.html">
+                                        Make all Azure storage blobs publicly accessible
+                                    </a>
+                                </li>
+                            
+                                <li>
+                                    <i class="fa fa-angle-right"></i>
+                                    <a href="https://www.damirscorner.com/blog/posts/20201218-CopyAllBlobsToAnotherAzureStorageAccount.html">
+                                        Copy all blobs to another Azure storage account
+                                    </a>
+                                </li>
+                            
+                                <li>
+                                    <i class="fa fa-angle-right"></i>
+                                    <a href="https://www.damirscorner.com/blog/posts/20201211-DangersOfReferencingElementsByName.html">
+                                        Dangers of referencing elements by name
+                                    </a>
+                                </li>
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+<!--/ Content ends -->
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Widget 1 -->
+                <div class="widget">
+                    <h4>About Me</h4>
+                    <p class="text-justify">
+                        My name is <a href="http://about.me/damir.arh">Damir Arh</a>. I'm a <a href="http://mvp.microsoft.com/en-us/mvp/Damir%20Arh-4039670">Microsoft MVP</a>,
+ a software architect and a polyglot developer. I'm into mobile apps and
+ development process optimization. I love teaching and helping others, 
+therefore I <a href="https://www.damirscorner.com/blog/archive.html">blog</a>, write <a href="https://www.damirscorner.com/articles.html">articles</a>, and speak at <a href="https://www.damirscorner.com/speaking.html">local events</a>. I've even written <a href="https://www.damirscorner.com/books/BookOnCSharpAndDotNet.html">a book</a>, cowritten <a href="https://www.damirscorner.com/books/NuGet2Essentials.html">another one</a>, and recorded <a href="https://www.damirscorner.com/courses/DebuggingAndUnitTestingInVisualStudio2017.html">two</a> <a href="https://www.damirscorner.com/courses/TestingForReliabilityAndPerformanceWithVisualStudio2017.html">video</a> courses.
+                    </p>
+
+                    <p class="text-justify">
+                        In my spare time I'm always on the move: hiking 
+with my dog, geocaching, running, rock climbing. To unwind, I like to 
+play a game or read a book.
+                    </p>
+
+                    <ul>
+                        <li><i class="fa fa-angle-right"></i><a href="http://twitter.com/DamirArh/">Twitter</a></li>
+                        <li><i class="fa fa-angle-right"></i><a href="http://si.linkedin.com/in/damirarh">LinkedIn</a></li>
+                        <li><i class="fa fa-angle-right"></i><a href="https://forms.gle/ouvAQUHnYVdXP6cw6">Contact Form</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-12"><p class="copy pull-left">
+                </p><hr>
+                <!-- Copyright information. You can remove my site link. -->
+                © 2000-2021 Damir Arh, Some Rights Reserved
+            </div>
+            <div class="col-md-12"><p class="copy pull-left">
+                As an Amazon Associate, I earn from qualifying purchases.
+            </p></div>
+        </div>
+    </div>
+</footer>
+<!--/ Footer -->
+
+<!-- Scroll to top -->
+<span class="totop" style="display: block;"><a href="#"><i class="fa fa-angle-up"></i></a></span>
+
+<!-- Javascript files -->
+<!-- jQuery -->
+<script src="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/jquery.js"></script>
+<!-- Bootstrap JS -->
+<script src="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/bootstrap.js"></script>
+<!-- Isotope, Pretty Photo JS -->
+<script src="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/jquery_002.js"></script>
+<script src="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/jquery_003.js"></script>
+<!-- Support Page Filter JS -->
+<script src="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/filter.js"></script>
+<!-- Flex slider JS -->
+<script src="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/jquery_004.js"></script>
+<!-- Respond JS for IE8 -->
+<script src="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/respond.js"></script>
+<!-- HTML5 Support for IE -->
+<script src="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/html5shiv.js"></script>
+<!-- Custom JS -->
+<script src="NavParams%20Alternatives%20in%20Ionic%204%20|%20Damir's%20Corner_fichiers/custom.js"></script>
+
+
+<iframe style="display: none;"></iframe><table style="width: 133px; display: none; top: 258px; left: 846px; position: absolute;" class="gstl_50 gssb_c" cellspacing="0" cellpadding="0"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table></body></html>

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar  color="success">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Medecins</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      
+    </ion-list-header>
+
+    <ion-item *ngFor="let item of pat">
+      <ion-avatar slot="start">
+        <img src="https://p8.storage.canalblog.com/86/87/839997/118181060.png">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{item.nom}} {{item.prenom}}  </h2>
+        <h3>{{item.ville}}</h3>
+        <p>{{item.email}},{{item.telephone}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+  

@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>Mesure</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let item of pat">
+
+    <ion-card-header>
+      Mesure
+    </ion-card-header>
+    <ion-card-content>
+      Vomissement <b style="color: blue;">{{item.vomissement}}</b>,Troubles digestifs <b style="color: blue;">{{item.troubedigest}}</b>
+      ,Fatigue <b style="color: blue;">{{item.fatigue}}</b>,Diarrhée <b style="color: blue;">{{item.diarrhee}}</b>,Fatigue importante <b style="color: blue;">{{item.soif}}</b>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

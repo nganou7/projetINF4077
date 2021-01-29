@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img style="margin-left:auto; margin-right:auto; width:200px; height:200px;" src="/assets/login.png" class="img-login"></ion-img>
+  <form #f="ngForm" (ngSubmit)="loginuser(f.value)">
+    <ion-item>
+      <ion-label position="floating" >USER NAME</ion-label>
+      <ion-input type="email" name="username" ngModel required=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">MOT DE PASSE</ion-label>
+      <ion-input type="password"  name="password" ngModel required=""></ion-input>
+    </ion-item>
+    <ion-button [disabled]="!f.valid"  color = "dark" size="small" fill="solid" expand="block" size="largex" class="marge-t"  type="submit"> Connection</ion-button>
+  </form>
+</ion-content>

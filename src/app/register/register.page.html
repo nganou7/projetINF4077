@@ -1,0 +1,88 @@
+<ion-header color="danger">
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Inscription</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="bg1" padding>
+  <ion-img style="" src="/assets/BusinessRegistration3.png" class="img-login"></ion-img>
+
+  <form #f="ngForm" (ngSubmit)="onregister(f.value)" >
+    <ion-item>
+      <ion-label position="floating" >Nom</ion-label>
+      <ion-input type="text"  name="nom" ngModel required=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" >Prenom</ion-label>
+      <ion-input type="text"  name="prenom" ngModel required=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" >Email</ion-label>
+      <ion-input type="email"  name="email" ngModel required=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" >Telephone</ion-label>
+      <ion-input type="tel" name="telephone" ngModel required=""></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="floating" >Contact d'urgence</ion-label>
+      <ion-input type="tel" name="numerourgence" ngModel required=""></ion-input>
+    </ion-item>
+    <ion-item>
+
+      
+
+
+      
+      
+      <ion-label position="floating" >Age</ion-label>
+      <ion-input type="text" name="age" ngModel required=""></ion-input>
+    </ion-item>
+
+    <ion-list>
+
+      <ion-item>
+        <ion-label>Ville</ion-label>
+        <ion-select interface="action-sheet" placeholder="selectioner" name="ville" ngModel required="">
+          <ion-select-option value="Yaoundé">Yaoundé</ion-select-option>
+          <ion-select-option value="Douala">Douala</ion-select-option>
+          <ion-select-option value="Bandjoun">Bandjoun</ion-select-option>
+          <ion-select-option value="Bafousam">Bafousam</ion-select-option>
+          <ion-select-option value="Maroua">Maroua</ion-select-option>
+          <ion-select-option value="Bafousam">Bafousam</ion-select-option>
+          <ion-select-option value="Bafousam">Bafousam</ion-select-option>
+          <ion-select-option value="Bafousam">Bafousam</ion-select-option>
+          <ion-select-option value="Bafousam">Bafousam</ion-select-option>
+        </ion-select>
+      </ion-item>   
+      
+
+
+      <ion-item>
+        <ion-label>Sexe</ion-label>
+        <ion-select interface="action-sheet" placeholder="selectioner" name="sexe" ngModel required="">
+          <ion-select-option value="M">MASCULIN</ion-select-option>
+          <ion-select-option value="F">FEMININ</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating" >Mot de passe</ion-label>
+        <ion-input type="password" name="password" ngModel required=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating" >resaisir Mot de passe</ion-label>
+        <ion-input type="password" name="repeatpassword" ngModel required=""></ion-input>
+      </ion-item>
+
+    </ion-list>
+    <ion-button  [disabled]="!f.valid" type="submit" color = "success" size="small" fill="solid" expand="block" size="largex" class="marge-t" shape="round"> Je Miscrire</ion-button>
+  </form>
+
+</ion-content>

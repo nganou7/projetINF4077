@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>postmesure</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding" scroll-y="false">
+  <form #f="ngForm" (ngSubmit)="postmesure(f.value)" >
+  <ion-slides>
+
+    <ion-slide>
+      <div class="slide">
+        <img src="/assets/diaher.png"/>
+        <h2>Une diarrhée</h2>
+        <p>Une diarrhée liquide en jet (plusieurs litres par jour).</p>
+        <ion-label>Reponse</ion-label>
+        <ion-select interface="action-sheet" placeholder="selectioner" name="diarrhee" ngModel required="">
+          <ion-select-option value="Oui" default>OUI</ion-select-option>
+          <ion-select-option value="Non">NON</ion-select-option>
+        </ion-select>
+      </div>
+      
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide">
+        <img src="/assets/vomis.png"/>
+        <h2>Vomisement</h2>
+        <p>vous faites des <b>Vomissement intenses</b> à longuer de journée.Le vomissement désigne l'émission par la bouche du contenu de l'estomac. Souvent associé à des pathologies bénignes, il peut néanmoins provoquer une déshydratation plus ou moins forte qu'il convient de traiter rapidement</p>
+        <ion-label>Reponse</ion-label>
+        <ion-select interface="action-sheet" placeholder="selectioner" name="vomissement" ngModel required="">
+          <ion-select-option value="Oui" default>OUI</ion-select-option>
+          <ion-select-option value="Non">NON</ion-select-option>
+        </ion-select>
+      </div>
+      
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide">
+        <img src="/assets/icône-noir-solide-pour-la-douleur-souffrance-et-blessure-angoisse-détresse-tourment-tension-165608564-removebg-preview.png"/>
+        <h2>troubles digestifs majeurs provoquent</h2>
+        <p>Perte d'appétit, nausées, brûlures gastriques, éructations, ballonnements. </p>
+        <ion-label>Reponse</ion-label>
+        <ion-select interface="action-sheet" placeholder="selectioner" name="troubedigest" ngModel required="">
+          <ion-select-option value="Oui" default>OUI</ion-select-option>
+          <ion-select-option value="Non">NON</ion-select-option>
+        </ion-select>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide">
+        <img src="/assets/2805864.png"/>
+        <h2>Une fatigue importante</h2>
+        <p>Epuisement,lassitude,somnolence, notamment s'endormir contre sa volonté (« micro-siestes »),irritabilité,baisse de la vigilance, de la concentration et de la mémoire,démotivation,dépression,</p>
+        <ion-label>Reponse</ion-label>
+        <ion-select interface="action-sheet" placeholder="selectioner" name="fatigue" ngModel required="">
+          <ion-select-option value="Oui" default>OUI</ion-select-option>
+          <ion-select-option value="Non">NON</ion-select-option>
+        </ion-select>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide">
+        <img src="/assets/top5_03-icon-300x300-removebg-preview.png"/>
+        <h2>Une soif intense</h2>
+        <p>Envie de boir de l'eau à chaque instant</p>
+        <ion-label>Reponse</ion-label>
+        <ion-select interface="action-sheet" placeholder="selectioner" name="soif" ngModel required="">
+          <ion-select-option value="Oui" default>OUI</ion-select-option>
+          <ion-select-option value="Non">NON</ion-select-option>
+        </ion-select>
+        <ion-button  [disabled]="!f.valid" type="submit" color = "success" size="small" fill="solid" expand="block" size="largex" class="marge-t" shape="round">Sauvegarder</ion-button>
+      </div>
+      
+    </ion-slide>
+
+  </ion-slides>
+</form>
+</ion-content>
